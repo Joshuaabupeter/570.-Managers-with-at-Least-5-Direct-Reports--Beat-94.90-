@@ -1,0 +1,8 @@
+with count_report as (select managerId, count(*) as direct_report from 
+Employee
+where managerId is not null
+group by 1)
+
+select name from
+Employee as e,count_report as a
+where a.managerId = e.id and a.direct_report>=5
